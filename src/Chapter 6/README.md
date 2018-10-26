@@ -77,8 +77,20 @@ The formal parameter list can include value and/or reference parameters.
 ### Function Call
 
 ```c++
-
+functionName(actual parameter list)
 ```
+
+### Actual Parameter List
+
+```c+
+expression or variable, expression or variable...
+```
+
+### Parameter Types
+
+There are _two_ types of parameters formally: __value__ and __reference__.
+  Attaching `&` after a `DataType` in the formal parameter list of a function,
+  the variable following becomes a __reference variable__.
 
 ## Value Parameters
 
