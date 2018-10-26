@@ -88,7 +88,7 @@ When a function is called, memory is allocated in the function data areas for
 ## Reference Parameters and Value-Returning Functions
 
 It _is_ possible to use reference parameters in value-returning functions, but
-  not recommended. [Value-returning](#Value-Returning-Functions) funtions are,
+  not recommended. [Value-returning](#Value-Returning-Functions) functions are,
   by definition, only to return one value. If more than one value is needed to
   be returned, change it to a void function and use reference parameters to
   return the values.
@@ -105,12 +105,106 @@ Some definitions:
 - __Global Identifier__: Identifiers declared outside of every function
   definition
 
+Now, to define their scope:
+
+1. Global Identifiers (such as variables) are accessible by a function/block if:
+   - Identifier is declared before the function/block
+   - The function name is different than the identifier
+   - All parameters of the function have different names than the identifier
+   - All local variables have different names than the identifier
+2. __(Nested Block)__ An identifier declared within a block is accessible:
+   - Only within the block from the point at which it is declared until its end
+   - By those blocks that are nested within that block if it does not have an
+      identifier of the same name.
+3. The scope of a function name is similar to the scope of an identifier
+    declared outside any block. That is, the scope of a function name is the same
+    as the scope of a global variable.
+
+Some things to note about global variables:
+
+1. C++ does not automatically initialize variables. Some compilers, however,
+    initialize _global_ variables to their default.
+2. In C++, `::` is called the __scope resolution operator__. For an example, the
+    `main()` function can reference global variable `z` as `z` or `::z`.
+3. There is a way to access a global variable declared after the definition of
+    a function. The function must not contain the identifier with the same name
+    as the global variable. The reserved word `extern` is used for this. It
+    announces a global variable and is used like so:
+    ```c++
+    extern int identifier;
+    ```
+
 ## Global Variables, Named Constants, and Side Effects
+
+Using global variables has side effects. If more than one function is using
+  the same global variable and something is to go wrong, it is difficult to
+  debug what went wrong where.
 
 ## Static and Automatic Variables
 
+So far, we have learned two simple rules regarding variables:
+
+1. Memory for a global variable remains allocated as long as the program
+    executes.
+2. Memory for a variable declared within a block is allocated at block entry and
+    deallocated at block exit.
+
+A variable for which memory is allocated at block entry and deallocated at block
+  exit is called an __automatic variable__. A variable for which memory is
+  allocated as long as the program executes is called a __static variable__.
+  Static variables are declared using the C++ reserved word `static`.
+
+As memory for static variables remains allocated between function calls, static
+  variables allow the use of the value from one function call to another. Local
+  scope will prevent the functions from manipulating the global variables value.
+
 ## Debugging: Using Drivers and Stubs
+
+Usually when a program contains a lot of functions each one is tested
+  individually on its own. __Driver__ programs are what is used to test a
+  function. If a function depends on the results calculated by another function,
+  that function cannot be tested alone as it has _dependencies_.
+
+Function __stubs__ are functions not fully written. A `void` function stub may
+  simply be a function header with a set of empty braces. For a value-returning
+  function, it may contain only a `return` statement with an easy-to-use return
+  value. For example:
+
+  ```c++
+  double pool_capacity(double len, double width, double dep) {
+    return 1000.00;
+  }
+  ```
 
 ## Function Overloading: An Introduction
 
+In C++, several functions can have the same name and this is called
+  __function overloading__. Before going into the rules of overloading, note the
+  following:
+
+Two functions are said to have different formal parameter lists if both
+  functions have:
+
+- A different number of formal parameters _or_
+- The same number of formal parameters and data types but differ in at least one
+    position in the order listed.
+
+When a function is overloaded and called, the parameter list decides which
+  function to execute. It is used when you have the same action for different
+  sets of data.
+
 ## Functions with Default Parameters
+
+Default parameters are specified in the function prototype. In general, these
+  rules apply to functions with default parameters:
+  
+- If you do not specify the value of a default parameter, the default value is
+  used for that parameter.
+- All of the default parameters must be the far-right parameters of the function
+- Suppose a function has more than one default parameter. In a function call, if a
+  value to a default parameter is not specified, then you must omit all of the
+  arguments to its right.
+- Default values can be constants, global variables, or function calls.
+- The caller has the option of specifying a value other than the default for any
+  default parameter.
+- You cannot assign a constant value as a default value to a reference parameter.

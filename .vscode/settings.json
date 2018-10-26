@@ -1,6 +1,7 @@
 {
   "markdown.extension.toc.githubCompatibility": true,
   "cSpell.words": [
+    "deallocated",
     "ifstream",
     "ofstream"
   ]
