@@ -57,6 +57,29 @@
 
 ## Void Functions
 
+### Function Definition
+
+The function definition for a void function with parameters has the following syntax:
+
+  ```c++
+  void functionName(formal, parameters, list) {
+    statements
+  }
+  ```
+  
+__Statements__ are usually declaration and/or executable statements. Even with the
+  formal parameter list being empty, the parenthesis still need to be present.
+
+### Formal Parameter List
+
+The formal parameter list can include value and/or reference parameters.
+
+### Function Call
+
+```c++
+
+```
+
 ## Value Parameters
 
 ## Reference Variables as Parameters
