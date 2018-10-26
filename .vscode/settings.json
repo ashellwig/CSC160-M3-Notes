@@ -1,3 +1,7 @@
 {
-  "markdown.extension.toc.githubCompatibility": true
+  "markdown.extension.toc.githubCompatibility": true,
+  "cSpell.words": [
+    "ifstream",
+    "ofstream"
+  ]
 }

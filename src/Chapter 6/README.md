@@ -61,11 +61,49 @@
 
 ## Reference Variables as Parameters
 
+See the [Value Parameters](#Value-Parameters) section for how value parameters
+  work. Because reference parameters _receive the address_ (memory allocation)
+  of the actual parameter, they can pass one or more values from a function and
+  can change the value of the actual parameter.
+
+Reference parameters are useful in three situations:
+
+- When the value of the actual parameter needs to be changed
+- When you want to return more than one value from a function
+- When passing the address would save memory space and time relative to copying
+    a large amount of data.
+
+Recall that attaching `&` after the `DataType` in the formal parameters list,
+  the variable following becomes a reference variable.
+
 ## Value and Reference Parameters and Memory Allocation
+
+When a function is called, memory is allocated in the function data areas for
+  its formal parameters and local variables.
+
+> Stream variables (including `std::ifstream` and `std::ofstream`) should be
+> passed by reference to a function, as the state of the input/output stream
+> can then be passed outside the function.
 
 ## Reference Parameters and Value-Returning Functions
 
+It _is_ possible to use reference parameters in value-returning functions, but
+  not recommended. [Value-returning](#Value-Returning-Functions) funtions are,
+  by definition, only to return one value. If more than one value is needed to
+  be returned, change it to a void function and use reference parameters to
+  return the values.
+
 ## Scope of an Identifier
+
+The __scope__ of an identifier refers to where in the program an identifier is
+  accessible (visible).
+
+Some definitions:
+
+- __Local Identifier__: Identifiers declared within a function (or block)
+  - Not accessible outside function block
+- __Global Identifier__: Identifiers declared outside of every function
+  definition
 
 ## Global Variables, Named Constants, and Side Effects
 
